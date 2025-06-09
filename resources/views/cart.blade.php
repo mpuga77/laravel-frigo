@@ -13,7 +13,7 @@
 
                 @if (Session::has('cart'))
                     @foreach (Session::get('cart') as $product)
-                        <div class="flex items-center py-0.5">
+                        <div class="flex items-center py-0.5 mb-5">
                             <form method="POST" action="{{ route('remove_from_cart') }}">
                                 @csrf
                             <div class="flex-none w-1/6 pl-2">
@@ -22,21 +22,22 @@
                             </div>
                             <div class="flex-auto w-3/6">
                                 <p class="pl-4 text-lg font-semibold leading-none text-pink-800">{{ $product['name'] }}</p>
-                            </div>                        
-                            
-                           
-                                <input type="hidden" name="id" value="{{ $product['id'] }}">
-                                <input type="submit" name="remove_btn" class="remove-btn" value="remove">
+                            </div>                            
+                                <!--<input type="hidden" name="id" value="{{ $product['id'] }}">
+                                <input type="submit" name="remove_btn" class="remove-btn bg-pink-800 text-white" value="remove">-->
                             </form>
 
                             <form method="POST" action="{{ route('edit_product_quantity') }}">
                                 @csrf
-                                <input type="submit" name="decrease_product_quantity_btn" class="edit-btn" value="-">
+                                <input type="submit" name="decrease_product_quantity_btn" class="edit-btn bg-pink-800 text-white w-6 hover:bg-pink-300 hover:text-pink-700" value="-">
 
                                 <input type="hidden" name="id" value="{{ $product['id'] }}">
-                                <input type="number" name="quantity" value="{{ $product['quantity'] }}" readonly>
+                                <input type="number" name="quantity" value="{{ $product['quantity'] }}" class="w-8 text-justify" readonly>
 
-                                <input type="submit" name="increase_product_quantity_btn" class="edit-btn" value="+">
+                                <input type="submit" name="increase_product_quantity_btn" class="edit-btn bg-pink-800 text-white w-6 hover:bg-pink-300 hover:text-pink-700" value="+">
+
+                                <input type="hidden" name="id" value="{{ $product['id'] }}">
+                                <input type="submit" name="remove_btn" class="ml-10 remove-btn bg-pink-800 text-white rounded-full hover:bg-pink-300 hover:text-pink-700 p-2" value="remove">
                             </form>
                             <!--
                             <div class="flex-auto w-1/6">
